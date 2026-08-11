@@ -1,0 +1,14 @@
+.vscode/**
+.github/**
+.vscodeignore
+.editorconfig
+.gitignore
+CONTRIBUTING.md
+SECURITY.md
+tsconfig.json
+src/**/*.ts
+!src/webview.html
+node_modules/**
+Full/**
+Full/
+onlytris-bypass-*.vsix

@@ -1,0 +1,67 @@
+{
+  "name": "onlytris-bypass",
+  "displayName": "Agent Safety Jailbreak Lab",
+  "description": "Instruction and guardrail evaluation for Antigravity (Gemini 3.1 Pro and Claude), Kiro (Claude), and Claude Code with third-party APIs.",
+  "version": "1.1.0",
+  "publisher": "antigravity",
+  "license": "MIT",
+  "icon": "resources/icon.png",
+  "preview": true,
+  "keywords": [
+    "agent safety",
+    "jailbreak research",
+    "prompt evaluation",
+    "claude code",
+    "gemini",
+    "kiro"
+  ],
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "extensionKind": [
+    "ui"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "onlytris-bypass-sidebar",
+          "title": "Agent Safety Lab",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "onlytris-bypass-sidebar": [
+        {
+          "type": "webview",
+          "id": "onlytris-bypass-view",
+          "name": "Jailbreak Lab"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "onlytris-bypass.focus",
+        "title": "Agent Safety Lab: Focus Panel"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "check": "tsc -p ./ --noEmit",
+    "package": "vsce package --allow-missing-repository"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^3.9.2",
+    "typescript": "^5.2.2"
+  }
+}

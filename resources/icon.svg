@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+  <defs>
+    <linearGradient id="onlytris-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe" />
+      <stop offset="100%" stop-color="#4facfe" />
+    </linearGradient>
+  </defs>
+  <!-- Outer Tech Shield -->
+  <path d="M12 2.5S19 5 19 9.8c0 4.2-3.5 8-7 11-3.5-3-7-6.8-7-11C5 5 12 2.5 12 2.5z" stroke="url(#onlytris-grad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Inner Lightning Bypass Bolt -->
+  <path d="M12.5 6L7.5 13.5h4.5l-1 4.5 5.5-7.5h-4.5l1-4.5z" fill="url(#onlytris-grad)" />
+</svg>

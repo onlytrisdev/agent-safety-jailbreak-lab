@@ -1,0 +1,30 @@
+name: Bug report
+description: Report reproducible extension behavior
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Extension version
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Editor and operating system
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Logs
+      description: Remove credentials, tokens, private prompts, and sensitive paths.

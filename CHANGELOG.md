@@ -16,6 +16,7 @@ All notable changes to this project are documented in this file.
 ### Changed
 
 - Rebranded the extension as Agent Safety Jailbreak Lab.
+- Updated the extension identifier to `onlytrisdev.agent-safety-jailbreak-lab` and added public repository metadata.
 - Isolated Claude configuration in `output-styles/onlytris.md`.
 
 ### Removed

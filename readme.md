@@ -2,16 +2,17 @@
 
 Agent Safety Jailbreak Lab is a VS Code-compatible extension for cross-model instruction and guardrail evaluation. It synchronizes a selected research profile to supported AI coding environments from one sidebar.
 
+Extension identifier: `onlytrisdev.agent-safety-jailbreak-lab`.
+
 > [!IMPORTANT]
 > This project is intended for authorized research, prompt-behavior evaluation, and local experimentation. It does not disable provider-enforced safeguards, access controls, or platform policies.
 
 ## Features
 
-- Synchronizes instruction profiles to supported local AI coding assistants.
-- Installs a global Claude Code Output Style without overwriting `CLAUDE.md`.
-- Preserves existing Claude Code settings and restores the previous output style on reset.
-- Supports Windows, macOS, and Linux through user-relative configuration paths.
-- Respects `CLAUDE_CONFIG_DIR` when it is configured.
+- Synchronizes research profiles across supported AI coding assistants.
+- Provides one-click activation and reset controls.
+- Includes two profile variants for comparative testing.
+- Supports Windows, macOS, and Linux.
 - Displays file size, line count, and last synchronization time.
 
 ## Supported environments
@@ -19,16 +20,6 @@ Agent Safety Jailbreak Lab is a VS Code-compatible extension for cross-model ins
 - **Antigravity:** Gemini 3.1 Pro and Claude.
 - **Kiro:** Claude.
 - **Claude Code:** including installations configured to use compatible third-party API providers.
-
-## Configuration targets
-
-| Target | User-level destination |
-| --- | --- |
-| Antigravity (Gemini 3.1 Pro and Claude) | `~/.gemini/GEMINI.md` |
-| Kiro (Claude) | `~/.kiro/steering/agents.md` |
-| Claude Code, including third-party API configurations | `~/.claude/output-styles/onlytris.md` |
-
-Claude Code additionally receives `"outputStyle": "OnlyTris"` in `~/.claude/settings.json`. Existing top-level settings are preserved. A new Claude Code session is required after synchronization because output styles are selected when a session starts.
 
 ## Installation
 
@@ -58,16 +49,12 @@ npm run package
 1. Open **Agent Safety Lab** from the activity bar.
 2. Select a profile version.
 3. Activate synchronization.
-4. Start a new Claude Code session when testing the Claude target.
-5. Use **Reset Bypass** to remove files owned by the extension and restore the previous Claude output style.
-
-## Configuration ownership
-
-The extension only owns its dedicated Claude style file, `output-styles/onlytris.md`. It does not create, overwrite, or delete the user's global `CLAUDE.md`. Reset only changes `settings.json` when the active style is still `OnlyTris`; a style selected manually after synchronization is left untouched.
+4. Restart the target assistant when necessary, then begin your evaluation.
+5. Use **Reset Bypass** to remove the active profile.
 
 ## Privacy and network behavior
 
-Activating synchronization downloads the selected profile from the URL embedded in the extension. The downloaded text is then written to the supported user-level configuration locations. Review the source and downloaded profile before using the extension in a sensitive environment.
+Activating synchronization downloads the selected profile from the project-maintained endpoint. Review the source and profile content before using the extension in a sensitive environment.
 
 ## Development
 

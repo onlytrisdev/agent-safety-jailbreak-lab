@@ -75,14 +75,14 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.registerWebviewViewProvider(GeminiWriterViewProvider.viewType, provider)
     );
 
-    const focusDisposable = vscode.commands.registerCommand('onlytris-bypass.focus', () => {
-        vscode.commands.executeCommand('onlytris-bypass-view.focus');
+    const focusDisposable = vscode.commands.registerCommand('agent-safety-jailbreak-lab.focus', () => {
+        vscode.commands.executeCommand('agent-safety-jailbreak-lab-view.focus');
     });
     context.subscriptions.push(focusDisposable);
 }
 
 class GeminiWriterViewProvider implements vscode.WebviewViewProvider {
-    public static readonly viewType = 'onlytris-bypass-view';
+    public static readonly viewType = 'agent-safety-jailbreak-lab-view';
     private _view?: vscode.WebviewView;
 
     constructor(

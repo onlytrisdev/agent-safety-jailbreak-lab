@@ -11,4 +11,5 @@ src/**/*.ts
 node_modules/**
 Full/**
 Full/
-onlytris-bypass-*.vsix
+*.vsix
+*.zip

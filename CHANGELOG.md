@@ -2,6 +2,19 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.2.0] - 2026-08-20
+
+### Added
+
+- Bundled local rule profiles in `resources/rules/` (`bypass_v1.md` and `bypass_v2.md`).
+- Offline activation support without requiring remote URL fetching.
+
+### Changed
+
+- Updated rule loader in `src/extension.ts` to read directly from local extension package.
+- Cleaned up repository structure and standardized rule file naming conventions.
+- Removed remote network fetch and obfuscated URL decoding logic.
+
 ## [1.1.0] - 2026-08-11
 
 ### Added

@@ -2,7 +2,7 @@
   "name": "agent-safety-jailbreak-lab",
   "displayName": "Agent Safety Jailbreak Lab",
   "description": "Instruction and guardrail evaluation for Antigravity (Gemini 3.1 Pro and Claude), Kiro (Claude), and Claude Code with third-party APIs.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "publisher": "onlytrisdev",
   "license": "MIT",
   "repository": {

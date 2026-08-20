@@ -4,17 +4,21 @@ import * as path from 'path';
 import * as os from 'os';
 import * as crypto from 'crypto';
 
-const decodeUrlGlobal = (codes: number[], key: number): string => {
-    return String.fromCharCode(...codes.map(c => c ^ key));
-};
+function getBypassContent(extensionPath: string, bypassType: string): string {
+    const isV2 = bypassType.toUpperCase() === 'V2';
+    const targetFileName = isV2 ? 'bypass_v2.md' : 'bypass_v1.md';
+    const candidates = [
+        path.join(extensionPath, 'resources', 'rules', targetFileName),
+        path.join(extensionPath, 'resources', 'rules', isV2 ? 'bypass-v2.md' : 'bypass-v1.md'),
+        path.join(extensionPath, 'resources', 'rules', isV2 ? 'gemini_v2.md' : 'gemini_v1.md')
+    ];
 
-function isValidUrl(str: string): boolean {
-    try {
-        new URL(str);
-        return str.startsWith('http://') || str.startsWith('https://');
-    } catch (_) {
-        return false;
+    for (const fullPath of candidates) {
+        if (fs.existsSync(fullPath)) {
+            return fs.readFileSync(fullPath, 'utf8');
+        }
     }
+    throw new Error(`Không tìm thấy file cấu hình bypass ${bypassType} (${targetFileName}) trong extension.`);
 }
 
 function getClaudeConfigDir(): string {
@@ -175,26 +179,9 @@ class GeminiWriterViewProvider implements vscode.WebviewViewProvider {
                 case 'activateSync': {
                     try {
                         const bypassType = this._globalState.get<string>('bypassType') || 'V1';
-                        // XOR decoding to prevent plain-text extraction from the packaged extension files
-                        const decodeUrl = (codes: number[], key: number): string => {
-                            return String.fromCharCode(...codes.map(c => c ^ key));
-                        };
-                        const codesV1 = [66, 94, 94, 90, 89, 16, 5, 5, 90, 75, 68, 79, 70, 4, 69, 68, 70, 83, 94, 88, 67, 89, 4, 67, 69, 4, 92, 68, 5, 70, 67, 72, 5, 5, 109, 111, 103, 99, 100, 99, 117, 92, 27, 4, 71, 78];
-                        const codesV2 = [66, 94, 94, 90, 89, 16, 5, 5, 90, 75, 68, 79, 70, 4, 69, 68, 70, 83, 94, 88, 67, 89, 4, 67, 69, 4, 92, 68, 5, 70, 67, 72, 5, 5, 109, 111, 103, 99, 100, 99, 117, 92, 24, 4, 71, 78];
-                        const key = 42;
-                        const libUrl = bypassType === 'V2' ? decodeUrl(codesV2, key) : decodeUrl(codesV1, key);
                         webviewView.webview.postMessage({ command: 'syncStatus', status: 'download' });
 
-                        let fileContent = '';
-                        if (isValidUrl(libUrl)) {
-                            const fileResponse = await fetch(libUrl);
-                            if (!fileResponse.ok) {
-                                throw new Error(`Không thể tải cấu hình Bypass ${bypassType}: ${fileResponse.statusText}`);
-                            }
-                            fileContent = await fileResponse.text();
-                        } else {
-                            fileContent = libUrl;
-                        }
+                        const fileContent = getBypassContent(this._extensionUri.fsPath, bypassType);
 
                         // Overwrite the local GEMINI.md file
                         const geminiParentDir = path.dirname(geminiPath);
